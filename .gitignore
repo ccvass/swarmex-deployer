@@ -1,0 +1,14 @@
+.env
+.env.*
+REMOTE.md
+AGENTS.md
+.kiro/
+.cursor/
+.vscode/
+.idea/
+*.exe
+*.test
+*.out
+/vendor/
+tmp/
+*.log

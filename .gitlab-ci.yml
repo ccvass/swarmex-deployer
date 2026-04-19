@@ -1,0 +1,14 @@
+stages:
+  - build
+
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"registry.labtau.com\":{\"username\":\"gitlab+deploy-token-409\",\"password\":\"gldt-zzCjmxDyJxHqaf_BzW7C\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination registry.labtau.com/ccvass/swarmex/$CI_PROJECT_NAME:$CI_COMMIT_SHORT_SHA --destination registry.labtau.com/ccvass/swarmex/$CI_PROJECT_NAME:latest
+  only:
+    - main
